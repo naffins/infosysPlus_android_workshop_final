@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TTSApp">
         <activity
+            android:name=".ModifyStudentListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ViewStudentListActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainMenuActivity"
             android:exported="false" />
         <activity
