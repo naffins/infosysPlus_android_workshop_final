@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="48sp"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".MainMenuActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/activity_main_menu_title"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/activity_main_menu_title"
+            android:textSize="25sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/activity_main_menu_prompt"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/activity_main_menu_prompt"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/activity_main_menu_title" />
+
+        <Button
+            android:id="@+id/activity_main_menu_student_list_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_main_menu_student_list_button"
+            android:textSize="14sp"
+            android:backgroundTint="@color/gray"
+            app:layout_constraintTop_toBottomOf="@id/activity_main_menu_prompt"/>
+
+        <Button
+            android:id="@+id/activity_main_menu_modify_student_list_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_main_menu_modify_student_list_button"
+            android:textSize="14sp"
+            android:backgroundTint="@color/gray"
+            app:layout_constraintTop_toBottomOf="@id/activity_main_menu_student_list_button"/>
+
+        <Button
+            android:id="@+id/activity_main_menu_exit_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_main_menu_exit_button"
+            android:textSize="14sp"
+            android:backgroundTint="@color/gray"
+            app:layout_constraintTop_toBottomOf="@id/activity_main_menu_modify_student_list_button"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

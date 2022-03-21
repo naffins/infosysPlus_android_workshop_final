@@ -4,18 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:padding="48dp"
     android:orientation="vertical"
     android:gravity="center"
-
-    tools:context=".MainActivity">
+    tools:context=".ConnectActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/login_header"
+            android:id="@+id/connect_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
@@ -27,39 +26,38 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/ip_address_textview"
-            android:text="@string/login_connect_ip"
+            android:id="@+id/activity_connect_ip_prompt"
+            android:text="@string/activity_connect_ip_prompt"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/login_header"
+            app:layout_constraintTop_toBottomOf="@id/connect_header"
             />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/ip_address_textview"
+            app:layout_constraintTop_toBottomOf="@id/activity_connect_ip_prompt"
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/login_ip_field"
+                android:id="@+id/activity_connect_ip_field"
                 android:layout_weight="2"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:hint="@string/login_input_hint"
+                android:hint="@string/activity_connect_input_hint"
                 android:textSize="14sp"
                 android:inputType="phone"
-                android:backgroundTint="@color/black"
                 app:layout_constraintLeft_toLeftOf="parent"
                 />
 
             <Button
-                android:id="@+id/login_connect_button"
+                android:id="@+id/activity_connect_button"
                 android:layout_width="0sp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
-                android:text="@string/login_connect_button"
-                android:backgroundTint="@color/black"
+                android:text="@string/activity_connect_button"
+                android:backgroundTint="@color/gray"
                 />
 
         </LinearLayout>

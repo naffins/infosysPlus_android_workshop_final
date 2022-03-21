@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TTSApp">
         <activity
-            android:name=".MainActivity"
+            android:name=".MainMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ConnectActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

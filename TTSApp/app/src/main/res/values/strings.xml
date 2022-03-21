@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">TTSApp</string>
-    <string name="login_connect_ip">Enter IP address of database</string>
-    <string name="login_input_hint">IP address</string>
-    <string name="login_connect_button">Connect</string>
+
+    <string name="activity_connect_ip_prompt">Enter IP address of database</string>
+    <string name="activity_connect_input_hint">IP address</string>
+    <string name="activity_connect_button">Connect</string>
+
+    <string name="activity_main_menu_title">Main Menu</string>
+    <string name="activity_main_menu_prompt">Select an action</string>
+    <string name="activity_main_menu_student_list_button">View Student List</string>
+    <string name="activity_main_menu_modify_student_list_button">Add/Delete Student(s)</string>
+    <string name="activity_main_menu_exit_button">Exit to Starting Page</string>
 </resources>
