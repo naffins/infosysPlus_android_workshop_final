@@ -1,9 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ModifyStudentListActivity">
+    android:padding="48sp"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".ViewStudentListActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/activity_modify_student_list_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_modify_student_list_title"
+            android:textSize="25sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <TextView
+            android:id="@+id/activity_modify_student_list_add_header"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/activity_modify_student_list_add_header"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/activity_modify_student_list_title"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <EditText
+            android:id="@+id/activity_modify_student_list_add_name_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="@string/activity_modify_student_list_add_name_edittext"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/activity_modify_student_list_add_header"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/activity_modify_student_list_add_block_0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/activity_modify_student_list_add_name_edittext"
+            app:layout_constraintLeft_toLeftOf="parent" >
+
+            <EditText
+                android:id="@+id/activity_modify_student_list_add_id_edittext"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="@string/activity_modify_student_list_add_id_edittext"
+                android:textSize="14sp"
+                android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/activity_modify_student_list_add_year_edittext"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="@string/activity_modify_student_list_add_year_edittext"
+                android:textSize="14sp"
+                android:inputType="phone" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/activity_modify_student_list_add_block_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/activity_modify_student_list_add_block_0"
+            app:layout_constraintLeft_toLeftOf="parent" >
+
+            <CheckBox
+                android:id="@+id/activity_modify_student_list_add_vac_checkbox"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="@string/activity_modify_student_list_add_vac_checkbox" />
+            <CheckBox
+                android:id="@+id/activity_modify_student_list_add_undergrad_checkbox"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="@string/activity_modify_student_list_add_undergrad_checkbox" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/activity_modify_student_list_add_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_modify_student_list_add_button"
+            android:textSize="14sp"
+            android:backgroundTint="@color/gray"
+            app:layout_constraintTop_toBottomOf="@id/activity_modify_student_list_add_block_1"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <View
+            android:id="@+id/activity_modify_student_list_partition_0"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/gray"
+            app:layout_constraintTop_toBottomOf="@id/activity_modify_student_list_add_button"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <TextView
+            android:id="@+id/activity_modify_student_list_delete_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_modify_student_list_delete_header"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/activity_modify_student_list_partition_0"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/activity_modify_student_list_delete_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/activity_modify_student_list_delete_header"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/activity_modify_student_list_delete_id_edittext"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:inputType="phone"
+                android:hint="@string/activity_modify_student_list_delete_id_edittext" />
+
+            <Button
+                android:id="@+id/activity_modify_student_list_delete_button"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_modify_student_list_delete_button"
+                android:textSize="14sp"
+                android:backgroundTint="@color/gray" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/activity_modify_student_list_partition_1"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/gray"
+            app:layout_constraintTop_toBottomOf="@id/activity_modify_student_list_delete_block"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <Button
+            android:id="@+id/activity_modify_student_list_return_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_modify_student_list_return_button"
+            android:textSize="14sp"
+            android:backgroundTint="@color/gray"
+            app:layout_constraintTop_toBottomOf="@id/activity_modify_student_list_partition_1"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

@@ -18,11 +18,11 @@ public class ConnectActivity extends AppCompatActivity {
     private final static String IP_ADDRESS_REGEX = "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}" +
             "(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$";
     private final static String INVALID_IP = "Error: Invalid IP address";
-    private final static String CONNECT_SUCCESS = "Connection success";
+    private final static String CONNECT_NOT_IMPLEMENTED_TEMP = "Connect function not implemented; skipping";
 
     // Variables for IP address field and connect button
-    EditText ipAddressEditText;
-    Button connectButton;
+    private EditText ipAddressEditText;
+    private Button connectButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +50,8 @@ public class ConnectActivity extends AppCompatActivity {
                     // TODO: Remove this filler code
                     // -----START OF CODE TO BE REMOVED-----
 
-                    // Show Toast indicating connect success
-                    Toast.makeText(getApplicationContext(),CONNECT_SUCCESS,Toast.LENGTH_SHORT).show();
+                    // Show Toast indicating that function is not implemented
+                    Toast.makeText(getApplicationContext(), CONNECT_NOT_IMPLEMENTED_TEMP,Toast.LENGTH_SHORT).show();
 
                     // Move to main menu activity
                     startActivity(new Intent(ConnectActivity.this,MainMenuActivity.class));

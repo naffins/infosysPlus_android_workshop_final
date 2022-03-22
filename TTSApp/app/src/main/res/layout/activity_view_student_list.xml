@@ -1,9 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="48sp"
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context=".ViewStudentListActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/activity_view_student_list_title"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/activity_view_student_list_title"
+            android:textSize="25sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/activity_view_student_list_prompt"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/activity_view_student_list_prompt"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/activity_view_student_list_title" />
+
+        <LinearLayout
+            android:id="@+id/activity_view_student_list_name_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/activity_view_student_list_prompt">
+
+            <CheckBox
+                android:id="@+id/activity_view_student_list_name_checkbox"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/activity_view_student_list_name_edittext"
+                android:layout_width="0dp"
+                android:layout_weight="6"
+                android:layout_height="wrap_content"
+                android:hint="@string/activity_view_student_list_name_edittext"
+                android:inputType="text"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/activity_view_student_list_id_year_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/activity_view_student_list_name_block"
+            app:layout_constraintLeft_toLeftOf="parent">
+
+            <CheckBox
+                android:id="@+id/activity_view_student_list_id_checkbox"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/activity_view_student_list_id_edittext"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content"
+                android:hint="@string/activity_view_student_list_id_edittext"
+                android:inputType="phone"
+                android:textSize="14sp" />
+
+            <CheckBox
+                android:id="@+id/activity_view_student_list_year_checkbox"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/activity_view_student_list_year_edittext"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content"
+                android:hint="@string/activity_view_student_list_year_edittext"
+                android:inputType="phone"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/activity_view_student_list_vac_undergrad_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/activity_view_student_list_id_year_block"
+            app:layout_constraintLeft_toLeftOf="parent">
+
+            <CheckBox
+                android:id="@+id/activity_view_student_list_vac_checkbox"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"/>
+
+            <Spinner
+                android:id="@+id/activity_view_student_list_vac_spinner"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="match_parent"
+                android:textSize="14sp" />
+
+            <CheckBox
+                android:id="@+id/activity_view_student_list_undergrad_checkbox"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"/>
+
+            <Spinner
+                android:id="@+id/activity_view_student_list_undergrad_spinner"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="match_parent"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/activity_view_student_list_load_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/gray"
+            android:text="@string/activity_view_student_list_load_button"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/activity_view_student_list_vac_undergrad_block"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <Button
+            android:id="@+id/activity_view_student_list_return_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/gray"
+            android:text="@string/activity_view_student_list_return_button"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/activity_view_student_list_load_button"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

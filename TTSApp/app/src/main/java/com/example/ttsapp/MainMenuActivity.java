@@ -10,7 +10,7 @@ import android.widget.Button;
 public class MainMenuActivity extends AppCompatActivity {
 
     // Variables for buttons
-    Button viewListButton, modifyListButton, exitButton;
+    private Button viewListButton, modifyListButton, exitButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
