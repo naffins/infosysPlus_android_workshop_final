@@ -2,6 +2,7 @@ package com.example.ttsapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,6 +27,7 @@ public class ViewStudentListActivity extends AppCompatActivity {
     // Toast messages
     private final static String FILTER_COMPILE_ERROR = "Error: could not compile JSON search filter";
     private final static String LIST_NOT_IMPLEMENTED_TEMP_BASE = "List function not implemented; attempted to list students with filter";
+    private final static String MOCK_JSON_COMPILE_ERROR_TEMP = "Error: failed to compile mock JSON string";
 
     // Variables for interactive components
     private EditText nameEditText, idEditText, yearEditText;
@@ -81,14 +84,50 @@ public class ViewStudentListActivity extends AppCompatActivity {
                 }
 
                 // TODO: Add functionality to retrieve user list
+                // (1) Make POST request, sending JSON filter as content
+                // (2) Retrieve JSON input, which is a JSONArray of JSONObjects with fields "id", "year",
+                //  "is_undergraduate", "is_vaccinated"
+                // (3) Start ViewStudentListActivity, passing the received JSONArray
 
                 // TODO: Remove this filler code
                 // -----START OF CODE TO BE REMOVED-----
 
                 // Show Toast indicating that function is not implemented
                 String toastMessage = LIST_NOT_IMPLEMENTED_TEMP_BASE + "\n"
-                        + filter;
+                        + filter + "\n"
+                        + "Note that filter is not applied here";
                 Toast.makeText(getApplicationContext(),toastMessage,Toast.LENGTH_LONG).show();
+
+                String listData = "[]";
+
+                // Create mock JSON list data
+                try {
+                    JSONArray jsonArray = new JSONArray();
+                    JSONObject a, b;
+                    a = new JSONObject();
+                    a.put("name","Person A");
+                    a.put("id",1001111);
+                    a.put("year",2022);
+                    a.put("is_vaccinated",true);
+                    a.put("is_undergraduate",false);
+                    b = new JSONObject();
+                    b.put("name","Person B");
+                    b.put("id",1002222);
+                    b.put("year",2021);
+                    b.put("is_vaccinated",false);
+                    b.put("is_undergraduate",true);
+                    jsonArray.put(a);
+                    jsonArray.put(b);
+                    listData = jsonArray.toString();
+                }
+                catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(),MOCK_JSON_COMPILE_ERROR_TEMP,Toast.LENGTH_SHORT);
+                }
+
+                // Start results page activity
+                Intent intent = new Intent(ViewStudentListActivity.this,LoadResultActivity.class);
+                intent.putExtra("listData",listData);
+                startActivity(intent);
 
                 // -----END OF CODE TO BE REMOVED-----
             }
@@ -137,8 +176,8 @@ public class ViewStudentListActivity extends AppCompatActivity {
             if (nameCheckBox.isChecked()) filterJson.put("name",nameEditText.getText().toString());
             if (idCheckBox.isChecked()) filterJson.put("id",Integer.valueOf(idEditText.getText().toString()));
             if (yearCheckBox.isChecked()) filterJson.put("year",Integer.valueOf(yearEditText.getText().toString()));
-            if (vacCheckBox.isChecked()) filterJson.put("vaccinated",vacSpinner.getSelectedItem().toString().equals(vacSpinnerDefault));
-            if (undergradCheckBox.isChecked()) filterJson.put("undergraduate",undergradSpinner.getSelectedItem().toString().equals(undergradSpinnerDefault));
+            if (vacCheckBox.isChecked()) filterJson.put("is_vaccinated",vacSpinner.getSelectedItem().toString().equals(vacSpinnerDefault));
+            if (undergradCheckBox.isChecked()) filterJson.put("is_undergraduate",undergradSpinner.getSelectedItem().toString().equals(undergradSpinnerDefault));
         } catch (JSONException e) {
             return null;
         }
