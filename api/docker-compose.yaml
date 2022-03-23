@@ -1,0 +1,12 @@
+version: "3"
+services:
+  mysql:
+    container_name: fa-mysql
+    image: mysql:latest
+    command: --max_allowed_packet=256M
+    restart: on-failure
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db
+    ports:
+      - 3306:3306
