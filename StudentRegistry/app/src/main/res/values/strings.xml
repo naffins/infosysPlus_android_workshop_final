@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">StudentRegistry</string>
+
+    <string name="activity_connect_ip_prompt">Enter IP address of database</string>
+    <string name="activity_connect_input_hint">IP address</string>
+    <string name="activity_connect_button">Connect</string>
+
+    <string name="activity_main_menu_title">Main Menu</string>
+    <string name="activity_main_menu_prompt">Select an action</string>
+    <string name="activity_main_menu_student_list_button">View Student List</string>
+    <string name="activity_main_menu_modify_student_list_button">Add/Delete Student(s)</string>
+    <string name="activity_main_menu_exit_button">Exit to Starting Page</string>
+
+    <string name="activity_view_student_list_title">View Student List</string>
+    <string name="activity_view_student_list_prompt">Set filters (optional)</string>
+    <string name="activity_view_student_list_id_edittext">Student ID</string>
+    <string name="activity_view_student_list_name_edittext">Name</string>
+    <string name="activity_view_student_list_year_edittext">Matric. year</string>
+    <string name="activity_view_student_list_load_button">Load List</string>
+    <string name="activity_view_student_list_return_button">Return to Main Menu</string>
+
+    <string name="activity_load_result_title">Search Result(s)</string>
+    <string name="activity_load_result_prompt">If no result is shown, try another filter.</string>
+    <string name="activity_load_result_return_button">Return to Main Menu</string>
+
+    <string name="activity_modify_student_list_title">Add/Delete Student(s)</string>
+    <string name="activity_modify_student_list_add_header">Add Student</string>
+    <string name="activity_modify_student_list_add_name_edittext">Name (Latin characters only)</string>
+    <string name="activity_modify_student_list_add_id_edittext">Student ID</string>
+    <string name="activity_modify_student_list_add_year_edittext">Matriculation Year</string>
+    <string name="activity_modify_student_list_add_vac_checkbox">Fully vaccinated</string>
+    <string name="activity_modify_student_list_add_undergrad_checkbox">Undergraduate</string>
+    <string name="activity_modify_student_list_add_button">Add Student</string>
+    <string name="activity_modify_student_list_delete_header">Delete Student</string>
+    <string name="activity_modify_student_list_delete_id_edittext">Student ID</string>
+    <string name="activity_modify_student_list_delete_button">Delete</string>
+    <string name="activity_modify_student_list_return_button">Return to Main Menu</string>
+    <string name="title_activity_load_result">LoadResultActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>
