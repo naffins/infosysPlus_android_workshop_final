@@ -94,7 +94,7 @@ public class RequestHelper extends Thread {
             responseCode = connection.getResponseCode();
 
             inputStream = connection.getInputStream();
-            StringBuffer output = new StringBuffer("");
+            StringBuilder output = new StringBuilder("");
 
             if (inputStream != null) {
                 inputStreamReader = new InputStreamReader(inputStream);
@@ -112,6 +112,7 @@ public class RequestHelper extends Thread {
                 inputStream = null;
             }
             jsonOutput = output.toString();
+            connection.disconnect();
         }
         catch (Exception e) {
             handler.post(new Runnable() {
