@@ -93,24 +93,22 @@ public class RequestHelper extends Thread {
 
             responseCode = connection.getResponseCode();
 
-            inputStream = connection.getInputStream();
+            inputStream = responseCode<400? connection.getInputStream() : connection.getErrorStream();
             StringBuilder output = new StringBuilder("");
 
-            if (inputStream != null) {
-                inputStreamReader = new InputStreamReader(inputStream);
-                reader = new BufferedReader(inputStreamReader);
-                String read = reader.readLine();
-                while (read != null) {
-                    output.append(read);
-                    read = reader.readLine();
-                }
-                reader.close();
-                reader = null;
-                inputStreamReader.close();
-                inputStreamReader = null;
-                inputStream.close();
-                inputStream = null;
+            inputStreamReader = new InputStreamReader(inputStream);
+            reader = new BufferedReader(inputStreamReader);
+            String read = reader.readLine();
+            while (read != null) {
+                output.append(read);
+                read = reader.readLine();
             }
+            reader.close();
+            reader = null;
+            inputStreamReader.close();
+            inputStreamReader = null;
+            inputStream.close();
+            inputStream = null;
             jsonOutput = output.toString();
             connection.disconnect();
         }
@@ -119,6 +117,7 @@ public class RequestHelper extends Thread {
                 @Override
                 public void run() {
                     Log.e("PostHelper","Error: could not execute request");
+                    Log.e("PostHelper","Response code: " + Integer.toString(responseCode));
                     e.printStackTrace();
                 }
             });
