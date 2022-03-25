@@ -69,16 +69,20 @@ public class RequestHelper extends Thread {
             connection.setRequestProperty("Accept", "application/json");
             connection.setDoInput(true);
 
-            if ((jsonInput!=null)&&(!method.equals("GET"))) {
+            // If not a GET request
+            if (!method.equals("GET")) {
                 // Indicate content type as JSON
                 connection.setRequestProperty("Content-Type", "application/json; utf-8");
                 // Allow sending of content/receipt of content
                 connection.setDoOutput(true);
 
+                // Get output stream and writers
                 outputStream = new BufferedOutputStream(connection.getOutputStream());
                 outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-8");
 
                 writer = new BufferedWriter(outputStreamWriter);
+
+                // Write the request body content and flush to connection
                 writer.write(jsonInput);
                 writer.flush();
                 writer.close();
@@ -89,27 +93,40 @@ public class RequestHelper extends Thread {
                 outputStream = null;
             }
 
+
+            // Perform connection
             connection.connect();
 
+            // Get response
             responseCode = connection.getResponseCode();
 
+            // Get input stream if no error, or error stream if response code is an error code
             inputStream = responseCode<400? connection.getInputStream() : connection.getErrorStream();
             StringBuilder output = new StringBuilder("");
 
+            // Get reader for output (reply from server)
             inputStreamReader = new InputStreamReader(inputStream);
             reader = new BufferedReader(inputStreamReader);
+
+            // Keep reading (ignoring line-terminating characters)
             String read = reader.readLine();
             while (read != null) {
                 output.append(read);
                 read = reader.readLine();
             }
+
+            // Close reader
             reader.close();
             reader = null;
             inputStreamReader.close();
             inputStreamReader = null;
             inputStream.close();
             inputStream = null;
+            
+            // Assing string to be processed after connection is done
             jsonOutput = output.toString();
+
+            // Close connection
             connection.disconnect();
         }
         catch (Exception e) {
@@ -142,6 +159,7 @@ public class RequestHelper extends Thread {
             }
         }
 
+        // Do some post-request stuff
         handler.post(new Runnable() {
             public void run() {
                 postRequestTask.postRequestExecute(jsonOutput,responseCode);
