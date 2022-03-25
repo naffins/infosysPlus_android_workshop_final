@@ -33,4 +33,4 @@ On 25 March 2022 the ISTD Senior Student Board conducted a workshop on how to se
 
 ### Acknowledgements
 
-I would like to thank Shoham from the ISTD Senior Student Board for helping to prepare FastAPI and Docker container codes for the workshop, and Filbert (also from the Student Board) for helping to teach participants at the workshop's physical venue.
+I would like to thank Shoham from the ISTD Senior Student Board for helping to prepare FastAPI and Docker container code for the workshop, and Filbert (also from the Student Board) for helping to teach participants at the workshop's physical venue.
