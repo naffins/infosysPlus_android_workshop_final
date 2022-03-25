@@ -1,6 +1,6 @@
 # Infosys+ Android Workshop 2022: Databases
 
-On 25 March 2022 the ISTD Senior Student Board conducted a workshop on how to setup and integrate a stack for an external database for an Android app. Covered technologies included MySQL, FastAPI and Android Java programming.
+On 25 March 2022 the ISTD Senior Student Board conducted a workshop on how to setup and integrate a stack for an external database for an Android app, consisting of a SQL database, REST API web server and the app. Covered technologies included MySQL, FastAPI and Android Java programming.
 
 ### Workshop resources
 
