@@ -25,6 +25,7 @@ On 25 March 2022 the ISTD Senior Student Board conducted a workshop on how to se
 #### REST API and FastAPI
 - [FastAPI docs](https://fastapi.tiangolo.com/)
 - [Intro on REST APIs](https://www.redhat.com/en/topics/api/what-is-a-rest-api)
+- [Intro on HTTP methods in REST API context](https://www.restapitutorial.com/lessons/httpmethods.html)
 - [HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 
 #### Making HTTP requests in Java/Android
