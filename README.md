@@ -22,3 +22,7 @@ On 25 March 2022 the ISTD Senior Student Board conducted a workshop on how to se
 
 #### Making HTTP requests in Java/Android
 - Guide on making JSON POST request in Java using HttpURLConnection: [POST request guide](https://www.baeldung.com/httpurlconnection-post)
+
+### Acknowledgements
+
+I would like to Shoham from the ISTD Senior Student Board for helping to prepare FastAPI and Docker container codes for the workshop, and Filbert (also from the Student Board) for helping to teach participants at the workshop's physical venue.
