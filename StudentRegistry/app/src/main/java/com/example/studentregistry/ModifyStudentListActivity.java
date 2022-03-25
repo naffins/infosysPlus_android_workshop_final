@@ -89,14 +89,19 @@ public class ModifyStudentListActivity extends AppCompatActivity {
                 // (2) Get reply JSON
                 // (3) Check response code: is it 200 (success) or 400 (id already exists) or otherwise?
 
+                // Make POST request to /add_student with student data as a string in inputJson
                 RequestHelper requestHelper = new RequestHelper("/add_student", inputJson, "POST", new RequestHelper.PostRequestTask() {
                     @Override
                     public void postRequestExecute(String jsonOutput, int responseCode) {
+                        // Branch based on response code
+                        // If an entry with the same ID already exists:
                         if (responseCode==400) {
                             Toast.makeText(getApplicationContext(), DUPLICATE_ENTRY_ERROR, Toast.LENGTH_SHORT).show();
                             return;
                         }
+                        // Otherwise, if request is not OK (eg. error 500 or 422)
                         if (responseCode!=200) {
+                            // Print error message and log response code
                             Toast.makeText(getApplicationContext(), OPERATION_ERROR, Toast.LENGTH_SHORT).show();
                             Log.e("ModifyStudentListActivity","Error when attempting to add student");
                             Log.e("ModifyStudentListActivity","Response code: " + Integer.toString(responseCode));
@@ -105,6 +110,7 @@ public class ModifyStudentListActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), ADD_SUCCESS, Toast.LENGTH_SHORT).show();
                     }
                 });
+                // Start HTTP request thread
                 requestHelper.start();
 
                 // TODO: Remove this filler code
@@ -138,27 +144,36 @@ public class ModifyStudentListActivity extends AppCompatActivity {
                 }
 
                 // TODO: Add delete student functionality
-                // (1) Make DELETE request to /student?id=<student id>
+                // (1) Make DELETE request to /student?id=<student_id>
                 // (2) Get reply
                 // (3) Check if response code is 200 or 400 (ID doesn't exist) or other
 
+                // Make DELETE request to /student?id=<student_id> where our student_id is the String deleteId
+                // We do not pass any request body to be sent
                 RequestHelper requestHelper = new RequestHelper("/student?id=" + deleteId,
-                        null, "DELETE", new RequestHelper.PostRequestTask() {
+                        "", "DELETE", new RequestHelper.PostRequestTask() {
+                    
                     @Override
                     public void postRequestExecute(String jsonOutput, int responseCode) {
+
+                        // Branch based on the response code
+                        // If ID does not exist:
                         if (responseCode==400) {
                             Toast.makeText(getApplicationContext(), NOT_FOUND_ERROR, Toast.LENGTH_SHORT).show();
                             return;
                         }
+                        // If some other error occurs (eg. code 500)
                         if (responseCode!=200) {
                             Toast.makeText(getApplicationContext(), OPERATION_ERROR, Toast.LENGTH_SHORT).show();
                             Log.e("ModifyStudentListActivity","Could not delete student");
                             Log.e("ModifyStudentListActivity","Response code: " + Integer.toString(responseCode));
                             return;
                         }
+                        // Otherwise, if successful
                         Toast.makeText(getApplicationContext(), DELETE_SUCCESS, Toast.LENGTH_SHORT).show();
                     }
                 });
+                // Start request thread
                 requestHelper.start();
 
                 // TODO: Remove this filler code
@@ -183,7 +198,8 @@ public class ModifyStudentListActivity extends AppCompatActivity {
         });
     }
 
-    // Compile JSON with student details for adding new student
+    // Compile JSON string with student details for adding new student
+    // Returns a JSON object string with id, name, year, is_vaccinated, is_undergraduate keys
     private String compileAddJSONString(String addId, String addName, String addYear, boolean isVaccinated, boolean isUndergrad) {
         try {
             JSONObject compiledJson = new JSONObject();

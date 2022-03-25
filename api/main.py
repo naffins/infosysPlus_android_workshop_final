@@ -23,14 +23,12 @@ connection = pymysql.connect(
 table_name = "students"
 
 # Route for ConnectActivity
-
-## Route
+## Method
 @app.get("/")
 async def connectActivity():
     return {"success": True}
 
 # Route for ViewStudentListActivity
-
 ## Method
 @app.get("/student_list")
 async def viewStudentListActivity(response:Response, id: Optional[int] = None,
@@ -45,31 +43,36 @@ async def viewStudentListActivity(response:Response, id: Optional[int] = None,
     if is_undergraduate != None: filters.append("is_undergraduate={}".format(is_undergraduate))
     if is_vaccinated != None: filters.append("is_vaccinated={}".format(is_vaccinated))
 
-    print(id,name,year,is_undergraduate,is_vaccinated)
-    print(filters)
+    # Join elements of WHERE filter with " AND "
     filter = " AND ".join(filters)
 
-    # Compose query
+    # Compose command
     sql = f"SELECT * FROM {table_name}{' WHERE ' + filter if len(filter)>0 else ''};"
 
-    # closes the connection when done
+    # Create cursor object
     with connection.cursor() as cursor: 
         try:
-            # Make query and return results
+            # Make query and return results (a JSON array of JSON objects containing details)
+            # Note that for queries (which do not change the database state), they do not need to be committed
             cursor.execute(sql)
             reply = cursor.fetchall()
+
+            # SQL booleans are returned as 1 or 0, so we convert to Python bool
             for i in reply:
                 i["is_undergraduate"] = i["is_undergraduate"]==1
                 i["is_vaccinated"] = i["is_vaccinated"]==1
-            print(reply)
+
+            # Send back JSON array string
             return reply
+
+        # If some error happens when fetching SQL data
         except Exception as e:
             response.status_code = 500
             return SQL_ERROR
 
 # Route for ModifyStudentListActivity add function
-
 ## Template for POST request body
+## This enforces the request to have a JSON of this format as its body
 class ModifyStudentListActivity_Add_Template(BaseModel):
     id: int
     name: str
@@ -81,14 +84,31 @@ class ModifyStudentListActivity_Add_Template(BaseModel):
 @app.post("/add_student")
 async def modifyStudentListActivity_add(response: Response, student_data:ModifyStudentListActivity_Add_Template):
 
+    # Compose command
     sql = f"INSERT INTO {table_name} (id, name, year, is_undergraduate, is_vaccinated) VALUES ({student_data.id}, \"{student_data.name}\", {student_data.year}, {student_data.is_undergraduate}, {student_data.is_vaccinated});"
 
+
     try:
+        # Create cursor
         with connection.cursor() as cursor:
+
+            # Execute command
             cursor.execute(sql)
+        
+        # Commit command
         connection.commit()
+
+        # Return success message
+        return {"success": True}
+
     except Exception as e:
+        # If an error occurs, reverse any pending commands
+        # Strictly speaking this is not necessary in this particular case,
+        # likely because we are not using transactions (multiple operations
+        # done in a single atomic step), but is good practice
         connection.rollback()
+
+        # If error is due to duplicate entry, return 400 with corresponding error
         if "Duplicate entry" in str(e):
             response.status_code = 400
             return {"error": "id_already_exists"}
@@ -105,7 +125,10 @@ async def ModifyStudentListActivity_delete(response: Response, id: int):
     sql = f"DELETE FROM {table_name} WHERE id = {id};"
 
     try:
+        # Create cursor
         with connection.cursor() as cursor:
+
+            # Execute and commit command
             cursor.execute(sql)
             connection.commit()
 
@@ -117,8 +140,12 @@ async def ModifyStudentListActivity_delete(response: Response, id: int):
                 return {"error": "id_not_found"}
             return {"success": True}
     except Exception as e:
+        # Again, rollback any commands (redundant in this case)
+        connection.rollback()
         response.status_code = 500
         return SQL_ERROR
 
+# If this script is not run as module,
 if __name__=="__main__":
+    # Host server at 0.0.0.0:8000, and reload when changes to this script are detected
     uvicorn.run("__main__:app", host="0.0.0.0", port=8000, reload=True)

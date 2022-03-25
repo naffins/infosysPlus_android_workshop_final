@@ -59,7 +59,7 @@ public class ConnectActivity extends AppCompatActivity {
                     // (3) If condition in (2) is met, move to Main Menu
 
                     // Setup GET request
-                    RequestHelper connectHelper = new RequestHelper("/", null, "GET", new RequestHelper.PostRequestTask() {
+                    RequestHelper connectHelper = new RequestHelper("/", "", "GET", new RequestHelper.PostRequestTask() {
                         @Override
                         public void postRequestExecute(String jsonOutput, int responseCode) {
 

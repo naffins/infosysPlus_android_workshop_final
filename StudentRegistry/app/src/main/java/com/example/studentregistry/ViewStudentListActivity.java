@@ -96,22 +96,29 @@ public class ViewStudentListActivity extends AppCompatActivity {
                 //  "is_undergraduate", "is_vaccinated"
                 // (4) Start ViewStudentListActivity, passing the received JSONArray under key listData
 
-                RequestHelper requestHelper = new RequestHelper("/student_list?" + filter, filter,
+                // Make GET request to /student_list?<query_parameters> where query_parameters is the filter String
+                RequestHelper requestHelper = new RequestHelper("/student_list?" + filter, "",
                         "GET", new RequestHelper.PostRequestTask() {
+
+                    // Based on response code, we branch our success/error messages
                     @Override
                     public void postRequestExecute(String jsonOutput,int responseCode) {
+
+                        // If some error occurred (eg. wrong format, python error)
                         if (responseCode!=200) {
                             Toast.makeText(getApplicationContext(),RETRIEVAL_ERROR,Toast.LENGTH_SHORT).show();
                             Log.e("ViewStudentListActivity","Error retrieving student list");
                             Log.e("ViewStudentListActivity","Response code: " + Integer.toString(responseCode));
                             return;
                         }
+                        // If all is good, pass data to next activity and start next activity
                         Toast.makeText(getApplicationContext(),RETRIEVAL_SUCCESS,Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(ViewStudentListActivity.this,LoadResultActivity.class);
                         intent.putExtra("listData",jsonOutput);
                         startActivity(intent);
                     }
                 });
+                // Start the thread (otherwise we won't have a request at all)
                 requestHelper.start();
 
                 // TODO: Remove this filler code
